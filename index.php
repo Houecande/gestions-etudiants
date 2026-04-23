@@ -44,5 +44,6 @@ try {
             <button type="submit" name="ajouter">Ajouter l'étudiant</button>
         </form>
     </div>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
