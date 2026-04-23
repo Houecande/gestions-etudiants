@@ -26,6 +26,29 @@ if (isset($_POST['ajouter'])) {
         $status = "error";
     }
 }
+
+if (isset($_POST['modifier'])) {
+    $id = $_POST['id'];
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $filiere_id = $_POST['filiere_id'];
+
+    if (!empty($id) && !empty($nom) && !empty($prenom) && !empty($filiere_id)) {
+        try {
+            $stmt = $pdo->prepare("UPDATE etudiants SET nom = ?, prenom = ?, filiere_id = ? WHERE id = ?");
+            $stmt->execute([$nom, $prenom, $filiere_id, $id]);
+            
+            header("Location: index.php?status=success&message=Etudiant+mis+a+jour");
+            exit();
+        } catch (PDOException $e) {
+            $message = "Erreur lors de la modification : " . $e->getMessage();
+            $status = "error";
+        }
+    } else {
+        $message = "Tous les champs sont obligatoires.";
+        $status = "error";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
