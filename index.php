@@ -21,6 +21,13 @@ try {
 <body>
     <div class="container">
         <h1>Ajouter un Étudiant</h1>
+
+        <?php if (isset($_GET['message'])): ?>
+            <div class="alert alert-<?= htmlspecialchars($_GET['status'] ?? 'success') ?>">
+                <?= htmlspecialchars($_GET['message']) ?>
+            </div>
+        <?php endif; ?>
+
         <form action="traitement.php" method="POST">
             <div class="form-group">
                 <label for="nom">Nom :</label>

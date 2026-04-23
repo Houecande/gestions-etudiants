@@ -13,8 +13,10 @@ if (isset($_POST['ajouter'])) {
         try {
             $stmt = $pdo->prepare("INSERT INTO etudiants (nom, prenom, filiere_id) VALUES (?, ?, ?)");
             $stmt->execute([$nom, $prenom, $filiere_id]);
-            $message = "Étudiant ajouté avec succès !";
-            $status = "success";
+            
+            // Redirection vers la page principale après insertion réussie
+            header("Location: index.php?status=success&message=Etudiant+ajoute");
+            exit();
         } catch (PDOException $e) {
             $message = "Erreur lors de l'ajout : " . $e->getMessage();
             $status = "error";
